@@ -16,9 +16,11 @@ const Home: NextPage = () => {
 			</Head>
 			<main className={styles.main}>
 				<div>
-					<div>
-						<img src="" alt="" />
-						<div className={styles.companyContainer}>
+					<div className={styles.activeStock}>
+						<div className={styles.activeStockIconContainer}>
+							<Image src={require("../public/vercel.svg")} />
+						</div>
+						<div className={styles.activeStockTextContainer}>
 							<p>NASDAQ: AAPL</p>
 							<h1>Apple Inc.</h1>
 						</div>

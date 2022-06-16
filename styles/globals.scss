@@ -4,6 +4,13 @@ $neutral-200: #a3a3a3;
 $neutral-300: #4d4d4d;
 $bg: #151515;
 
+:root {
+	--neutral-100: #fff;
+	--neutral-200: #a3a3a3;
+	--neutral-300: #4d4d4d;
+	--bg: #151515;
+}
+
 @font-face {
 	font-family: "Red Hat Display";
 	font-style: normal;
