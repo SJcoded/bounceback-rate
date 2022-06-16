@@ -1,12 +1,37 @@
 import type { NextPage } from "next";
+import { useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import ActiveStock from "../components/ActiveStock";
-import Graph from "../components/Graph";
+import Chart from "../components/Chart";
 import Header from "../components/Header";
 import styles from "../styles/pages/Home.module.scss";
 
+const get100DataPoints = () => {
+	const peak = 1000;
+
+	const dataPoints = [];
+	for (let i = 1; i < 100; i++) {
+		const current = peak * (i / 100);
+		const gain = peak / current;
+
+		dataPoints.push(gain);
+	}
+	console.log(dataPoints);
+	return dataPoints;
+};
+
 const Home: NextPage = () => {
+	const apikey = process.env.ALPHA_API;
+	const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=${apikey}`;
+
+	const [dataPoints, setDataPoints] = useState(get100DataPoints());
+
+	useEffect(() => {
+		fetch(url);
+		get100DataPoints();
+		console.log(apikey);
+	}, []);
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -29,7 +54,7 @@ const Home: NextPage = () => {
 					<p>Currently viewed</p>
 				</div>
 				<div className={styles.rightColumn}>
-					<Graph />
+					<Chart data={dataPoints} />
 				</div>
 			</main>
 		</div>
