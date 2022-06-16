@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.scss";
+import ActiveStock from "../components/ActiveStock";
+import Header from "../components/Header";
+import styles from "../styles/pages/Home.module.scss";
 
 const Home: NextPage = () => {
 	return (
@@ -14,17 +16,15 @@ const Home: NextPage = () => {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<Header />
 			<main className={styles.main}>
 				<div>
-					<div className={styles.activeStock}>
-						<div className={styles.activeStockIconContainer}>
-							<Image src={require("../public/vercel.svg")} />
-						</div>
-						<div className={styles.activeStockTextContainer}>
-							<p>NASDAQ: AAPL</p>
-							<h1>Apple Inc.</h1>
-						</div>
-					</div>
+					<ActiveStock
+						exchange="NASDAQ"
+						stockLogo="google"
+						stockName="Google Ltd"
+						stockSymbol="GOOGL"
+					/>
 				</div>
 			</main>
 		</div>
