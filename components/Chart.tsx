@@ -28,7 +28,7 @@ ChartJS.register(
 );
 
 type Props = {
-	dataPoints: [number];
+	dataPoints: number[];
 };
 
 const lineOptions: any = {
@@ -92,7 +92,7 @@ function Chart({ dataPoints }: Props) {
 			<Line
 				data={data}
 				options={{
-					tension: 0.2,
+					tension: 0.3,
 					borderColor: "#DA5867",
 					borderCapStyle: "round",
 					borderDashOffset: 0.0,
@@ -121,9 +121,6 @@ function Chart({ dataPoints }: Props) {
 							},
 							ticks: {
 								display: true,
-								callback: (value: number) => {
-									return `${value * 100}%`;
-								},
 								source: "labels",
 								stepSize: 0.1,
 								maxTicksLimit: 5,
@@ -133,9 +130,7 @@ function Chart({ dataPoints }: Props) {
 							grid: {
 								display: false,
 							},
-							ticks: {
-								maxTicksLimit: 10,
-							},
+							ticks: {},
 						},
 					},
 					line: lineOptions,

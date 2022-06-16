@@ -5,31 +5,23 @@ import ActiveStock from "../components/ActiveStock";
 import Chart from "../components/Chart";
 import Header from "../components/Header";
 import styles from "../styles/pages/Home.module.scss";
-
-const get100DataPoints = () => {
-	const peak = 1000;
-
-	const dataPoints = [];
-	for (let i = 1; i < 100; i++) {
-		const current = peak * (i / 100);
-		const gain = peak / current;
-
-		dataPoints.push(gain);
-	}
-	console.log(dataPoints);
-	return dataPoints;
-};
+import { getStockData } from "../utils/stockApi";
+import { Stock } from "../types/Stock";
 
 const Home: NextPage = () => {
-	const apikey = process.env.ALPHA_API;
-	const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=${apikey}`;
-
-	const [dataPoints, setDataPoints] = useState(get100DataPoints());
+	const [dataPoints, setDataPoints] = useState([1, 9]);
+	const [data, setData] = useState({});
 
 	useEffect(() => {
-		fetch(url);
-		get100DataPoints();
-		console.log(apikey);
+		const stock: Stock = {
+			symbol: "AAPL",
+			interval: "60min",
+		};
+		console.log(
+			getStockData(stock).then((data) => {
+				console.log(data);
+			}),
+		);
 	}, []);
 
 	return (
@@ -54,7 +46,7 @@ const Home: NextPage = () => {
 					<p>Currently viewed</p>
 				</div>
 				<div className={styles.rightColumn}>
-					<Chart data={dataPoints} />
+					<Chart dataPoints={dataPoints} />
 				</div>
 			</main>
 		</div>
