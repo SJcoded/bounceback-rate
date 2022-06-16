@@ -5,7 +5,11 @@ import ActiveStock from "../components/ActiveStock";
 import Chart from "../components/Chart";
 import Header from "../components/Header";
 import styles from "../styles/pages/Home.module.scss";
-import { getStockData } from "../utils/stockApi";
+import {
+	getRecentStockData,
+	getDailyStockData,
+	getWeeklyStockData,
+} from "../utils/stockApi";
 import { Stock } from "../types/Stock";
 
 const Home: NextPage = () => {
@@ -14,11 +18,11 @@ const Home: NextPage = () => {
 
 	useEffect(() => {
 		const stock: Stock = {
-			symbol: "AAPL",
+			symbol: "GOOGL",
 			interval: "60min",
 		};
 		console.log(
-			getStockData(stock).then((data) => {
+			getDailyStockData(stock).then((data) => {
 				console.log(data);
 			}),
 		);
@@ -30,7 +34,7 @@ const Home: NextPage = () => {
 				<title>Bounceback Rate</title>
 				<meta
 					name="Bounceback rate"
-					content="Determines how much money you gain when stock rises back to it's peak price"
+					content="Bounceback rate refers to how much you would gain if a stock returns to it’s peak value."
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>

@@ -4,6 +4,7 @@ export type Stock = {
 };
 
 export type StockData = {
+	stock: Stock;
 	bouncebackRate: number;
 	highestValue: number;
 	highestValueDate: Date | undefined;
