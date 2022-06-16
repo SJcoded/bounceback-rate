@@ -4,9 +4,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
-module.exports = {
-	sassOptions: {
-		includePaths: [path.join(__dirname, "styles")],
-	},
-};
